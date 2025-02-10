@@ -1,8 +1,10 @@
 package com.preachers.hashing.ui;
 
+import com.preachers.games.snake.ui.GameFrame;
 import com.preachers.games.tictactoe.domain.TicTacToeGame;
 import com.preachers.hashing.domain.BlockProcessor;
 
+import java.util.Random;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -45,13 +47,22 @@ public class MainMenu extends JFrame {
         setVisible(true);
     }
 
+
     private void startGame(ActionEvent e) {
         String inputText = inputField.getText().trim();
         if (inputText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Поле введення не може бути порожнім!", "Помилка", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        new TicTacToeGame(this);
+
+        Random random = new Random();
+        int choice = random.nextInt(2); // 0 або 1
+
+        if (choice == 0) {
+            new TicTacToeGame(this);
+        } else {
+            new GameFrame();
+        }
     }
 
     public void processHash() {
